@@ -1,12 +1,15 @@
 import streamlit as st
 from google import genai
 from google.genai import types
+# import google.generativeai as genai
+# from google.generativeai import types
 from PIL import Image
 import io
 import random
 import requests
 import base64
 import os
+
 
 # ----------------------------
 # 🔧 APP CONFIG
@@ -23,11 +26,13 @@ st.title("✏ Perfect Pencil Sketch Generator - SEED SUPPORT!")
 # ----------------------------
 # 🔑 API KEYS
 # ----------------------------
-HF_TOKEN= os.getenv("HF_TOKEN")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+HF_TOKEN = os.getenv("HF_TOKEN")  # Hugging Face API Token for FLUX
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")  # Gemini API Key
 
 # Initialize Gemini client
 gemini_client = genai.Client(api_key=GEMINI_API_KEY)
+# genai.configure(api_key=GEMINI_API_KEY)
+# gemini_client = genai.Client()
 
 # ----------------------------
 # 🎛 User Controls
