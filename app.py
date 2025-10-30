@@ -6,6 +6,7 @@ import io
 import random
 import requests
 import base64
+import os
 
 # ----------------------------
 # 🔧 APP CONFIG
@@ -22,8 +23,8 @@ st.title("✏ Perfect Pencil Sketch Generator - SEED SUPPORT!")
 # ----------------------------
 # 🔑 API KEYS
 # ----------------------------
-HF_TOKEN = "REDACTED_HF_TOKEN"  # Your HuggingFace token
-GEMINI_API_KEY = "AIzaSyB9LdtEWGEpNotTf6h1KdfQEAtjkws0i34"  # Your Gemini API key
+HF_TOKEN= os.getenv("HF_TOKEN")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # Initialize Gemini client
 gemini_client = genai.Client(api_key=GEMINI_API_KEY)
