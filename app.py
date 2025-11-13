@@ -666,7 +666,9 @@ if st.session_state.keys_provided:
         """Generate base image with FLUX using NEW Hugging Face Inference Client"""
         try:
             # Initialize Hugging Face Inference Client
-            client = InferenceClient(api_key=st.session_state.hf_token)
+            client = InferenceClient(
+                provider="fal-ai",
+                api_key=st.session_state.hf_token)
             
             # Generate image using text_to_image
             image = client.text_to_image(
@@ -674,8 +676,8 @@ if st.session_state.keys_provided:
                 model="black-forest-labs/FLUX.1-schnell",
                 width=width,
                 height=height,
-                num_inference_steps=4,  # FLUX.1-schnell works best with 4 steps
-                guidance_scale=0.0  # FLUX.1-schnell doesn't use guidance
+                # num_inference_steps=4,  # FLUX.1-schnell works best with 4 steps
+                # guidance_scale=0.0  # FLUX.1-schnell doesn't use guidance
             )
             
             # Convert to RGB if needed
@@ -686,6 +688,10 @@ if st.session_state.keys_provided:
             
         except Exception as e:
             raise Exception(f"FLUX generation failed: {str(e)}")
+
+
+
+            
     
     # ----------------------------
     # 🖼 ENHANCED STEP 2: GEMINI PENCIL CONVERSION
